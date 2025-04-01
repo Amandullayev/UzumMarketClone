@@ -6,14 +6,16 @@ import java.util.UUID;
 public class User {
     private String name;
     private String userName;
+    private String password;
     private UUID id;
 
     public User() {
     }
 
-    public User(String name, String surname, UUID id) {
+    public User(String name, String userName, String password, UUID id) {
         this.name = name;
-        this.userName = surname;
+        this.userName = userName;
+        this.password = password;
         this.id = id;
     }
 
@@ -25,7 +27,7 @@ public class User {
         this.name = name;
     }
 
-    public String getSurname() {
+    public String getUserName() {
         return userName;
     }
 
@@ -41,16 +43,24 @@ public class User {
         this.id = id;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof User user)) return false;
-        return Objects.equals(userName, user.userName);
+        return Objects.equals(userName, user.userName) && Objects.equals(password, user.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(userName);
+        return Objects.hash(userName, password);
     }
 
     @Override
